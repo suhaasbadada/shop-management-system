@@ -1,0 +1,15 @@
+C:\xampp\htdocs
+create a folder
+open xampp, apache and MySQL 'Start' and 'Admin'
+open sublime text 3
+start coding
+
+LOGIN PAGE
+4 files required for login
+
+index.html - This file is created for the GUI view of the login page and empty field validation.
+style.css - This file is created for the attractive view of the login form.
+connection.php - Connection file contains the connection code for database connectivity.
+authentication.php - This file validates the form data with the database which is submitted by the user.
+
+rename according to will
