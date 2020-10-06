@@ -1,0 +1,386 @@
+CREATE TABLE Customer(
+    Customer_ID varchar(10)
+  , First_Name  VARCHAR(9) NOT NULL 
+  ,Middle_Name VARCHAR(8)
+  ,Last_Name   VARCHAR(12) NOT NULL
+  ,Email_ID    VARCHAR(27) NOT NULL
+,PRIMARY KEY(Customer_ID)
+);
+
+
+CREATE TABLE Customer_Phone(
+Customer_ID varchar(10)
+,Phone_No varchar(10), PRIMARY KEY(Phone_No), FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID)
+);
+
+
+CREATE TABLE Product_Category(
+   CategoryID VARCHAR(20)  NOT NULL PRIMARY KEY 
+  ,Name VARCHAR(20)  NOT NULL
+);
+
+
+CREATE TABLE Products(
+  Product_ID        VARCHAR(10) PRIMARY KEY
+  ,Name        VARCHAR(100)
+  ,Unit        VARCHAR(100)
+  ,PcsPacket   INTEGER
+  ,PcsCarton   INTEGER
+  ,MRPUnit     INTEGER
+  ,PriceUnit   INTEGER
+  ,BV          INTEGER
+  ,GST        VARCHAR(100)
+  ,CategoryID VARCHAR(20)
+,FOREIGN KEY (CategoryID) REFERENCES Product_Category(CategoryID)
+);
+
+
+CREATE TABLE Orders(
+   Order_ID        VARCHAR(10) NOT NULL PRIMARY KEY
+  ,Order_Date      VARCHAR(20)  NOT NULL
+  ,Purchase_Amount INTEGER NOT NULL
+  ,Customer_ID     VARCHAR(10) NOT NULL
+  , FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID) 
+);
+
+
+CREATE TABLE Order_Details(
+   Order_ID   VARCHAR(10) NOT NULL 
+  ,Unit       INTEGER  NOT NULL
+  ,Product_ID VARCHAR(10) NOT NULL
+  ,Amount     INTEGER NOT NULL
+  , PRIMARY KEY(Order_ID,Product_ID) 
+);
+
+
+CREATE TABLE Payment(
+   Order_ID          VARCHAR(10) NOT NULL PRIMARY KEY
+  ,Payment_Date      VARCHAR(20) NOT NULL
+  ,Amount            INTEGER NOT NULL
+  ,Method_of_Payment VARCHAR(20) NOT NULL
+  ,FOREIGN KEY (Order_ID) REFERENCES Orders(Order_ID)
+);
+
+
+CREATE TABLE Distributor(
+   Dis_ID   VARCHAR(10) NOT NULL PRIMARY KEY
+  ,Name     VARCHAR(100) NOT NULL
+  ,Address  VARCHAR(500) NOT NULL
+  ,District VARCHAR(20) NOT NULL
+  ,State    VARCHAR(20) NOT NULL
+);
+
+
+CREATE TABLE Inventory(
+   SNo              INTEGER  NOT NULL PRIMARY KEY 
+  ,Product_ID       VARCHAR(20)  NOT NULL
+  ,Unit_or_Quantity INTEGER  NOT NULL
+  ,TBV              INTEGER  NOT NULL
+  ,PriceUnit        INTEGER NOT NULL
+  ,Dis_ID   VARCHAR(20) NOT NULL
+  ,FOREIGN KEY(Product_ID) REFERENCES Products(Product_ID)
+  ,FOREIGN KEY(Dis_ID) REFERENCES Distributor(Dis_ID)
+);
+
+INSERT INTO Customer VALUES ('CUS0001','Agney','Singh','Talwar','agneys@gmail.com');
+INSERT INTO Customer VALUES ('CUS0002','Manoj',NULL,'Raj','manojr@gmail.com');
+INSERT INTO Customer VALUES ('CUS0003','Sanjay','Mohan','Sharma','ssharma@gmail.com');
+INSERT INTO Customer VALUES ('CUS0004','Aman',NULL,'Verma','amanverma@gmail.com');
+INSERT INTO Customer VALUES ('CUS0005','Raj',NULL,'Kapoor','rajk02@gmail.com');
+INSERT INTO Customer VALUES ('CUS0006','Jinto',NULL,'James','jintojames01@gmail.com');
+INSERT INTO Customer VALUES ('CUS0007','Sabar',NULL,'Nimmagadda','nsabar@outlook.com');
+INSERT INTO Customer VALUES ('CUS0008','Aditi',NULL,'Jain','aditijain01@outlook.com');
+INSERT INTO Customer VALUES ('CUS0009','Shivang','Prem','Sharma','spsharma00@gmail.com');
+INSERT INTO Customer VALUES ('CUS0010','Pankaj',NULL,'Gupta','pankajgupta21@gmail.com');
+INSERT INTO Customer VALUES ('CUS0011','Suraj',NULL,'Saxena','surajs@gmail.com');
+INSERT INTO Customer VALUES ('CUS0012','Ram',NULL,'Singh','ramsingh1@hotmail.com');
+INSERT INTO Customer VALUES ('CUS0013','Baljeet',NULL,'Tripathi','baljeet123@gmail.com');
+INSERT INTO Customer VALUES ('CUS0014','Shiv',NULL,'Raj','shivraj001@gmail.com');
+INSERT INTO Customer VALUES ('CUS0015','Uday',NULL,'Kumar','udaykumar@gmail.com');
+INSERT INTO Customer VALUES ('CUS0016','Sushant',NULL,'Chauhan','sushantchauhan@gmail.com');
+INSERT INTO Customer VALUES ('CUS0017','Dhruv',NULL,'Adawal','dadawal@gmail.com');
+INSERT INTO Customer VALUES ('CUS0018','Arjun','Prasad','Shrivastava','apshrivastava@gmail.com');
+INSERT INTO Customer VALUES ('CUS0019','Shivangi',NULL,'Mehra','shivangi005@outlook.com');
+INSERT INTO Customer VALUES ('CUS0020','Sanidhya',NULL,'Verma','sanidhyaverma@gmail.com');
+INSERT INTO Customer VALUES ('CUS0021','Antara',NULL,'Rai','antararai@gmail.com');
+INSERT INTO Customer VALUES ('CUS0022','Shreya',NULL,'Prasad','shreyaprasad1@gmail.com');
+INSERT INTO Customer VALUES ('CUS0023','Alok','Kumar','Gupta','kumaralok@gmail.com');
+INSERT INTO Customer VALUES ('CUS0024','Manit',NULL,'Jain','manitj@gmail.com');
+INSERT INTO Customer VALUES ('CUS0025','Rashmi',NULL,'Roy','royrashmi@gmail.com');
+INSERT INTO Customer VALUES ('CUS0026','Amita',NULL,'Bhatia','amita10@gmail.com');
+INSERT INTO Customer VALUES ('CUS0027','Soumya','Ranjan','Tripathi','srtripathi@gmail.com');
+INSERT INTO Customer VALUES ('CUS0028','Mansi',NULL,'Mishra','mansimishra@gmail.com');
+INSERT INTO Customer VALUES ('CUS0029','Veena',NULL,'Patel','veenapatel12@gmail.com');
+INSERT INTO Customer VALUES ('CUS0030','Aryan',NULL,'Dhavan','aryand16@outlook.com');
+INSERT INTO Customer VALUES ('CUS0031','Vaibhav',NULL,'Garg','vgarg@outlook.com');
+INSERT INTO Customer VALUES ('CUS0032','Mansi',NULL,'Aluwalia','aluwaliamansi@gmail.com');
+INSERT INTO Customer VALUES ('CUS0033','Brijendra','Kumar','Tiwari','tiwaribk@gmail.com');
+INSERT INTO Customer VALUES ('CUS0034','Ashutosh',NULL,'Dikshit','ashutoshdikshit@gmail.com');
+INSERT INTO Customer VALUES ('CUS0035','Akshat',NULL,'Mittal','amittal01@gmail.com');
+INSERT INTO Customer VALUES ('CUS0036','Jyoti',NULL,'Khanna','jkhanna@outlook.com');
+INSERT INTO Customer VALUES ('CUS0037','Kiran',NULL,'Ahuja','ahujakiran@gmail.com');
+INSERT INTO Customer VALUES ('CUS0038','Mona','Sachdeva','Khanna','monakhanna02@gmail.com');
+INSERT INTO Customer VALUES ('CUS0039','Sangeeta',NULL,'Singhal','sangeetas03@outlook.com');
+INSERT INTO Customer VALUES ('CUS0040','Sanjay',NULL,'Raina','sanjayraina@gmail.com');
+INSERT INTO Customer VALUES ('CUS0041','Virat',NULL,'Kumar','viratkumar@gmail.com');
+INSERT INTO Customer VALUES ('CUS0042','Archana',NULL,'Gulati','archanag1@outlook.com');
+INSERT INTO Customer VALUES ('CUS0043','Vivek',NULL,'Bhattacharya','vivekb01@gmail.com');
+INSERT INTO Customer VALUES ('CUS0044','Lalit',NULL,'Gopal','lalitgopal@gmail.com');
+INSERT INTO Customer VALUES ('CUS0045','Ashish',NULL,'Khurrana','ashishkhurrana001@gmail.com');
+INSERT INTO Customer VALUES ('CUS0046','Pranit',NULL,'Rastogi','prastogi@gmail.com');
+INSERT INTO Customer VALUES ('CUS0047','Gursher',NULL,'Aujla','aujlagursher@outlook.com');
+INSERT INTO Customer VALUES ('CUS0048','Manas',NULL,'Chatterjee','manas20@gmail.com');
+INSERT INTO Customer VALUES ('CUS0049','Soni',NULL,'Gupta','sonig11@gmail.com');
+INSERT INTO Customer VALUES ('CUS0050','Amit',NULL,'Bannerjee','amitb1@outlook.com');
+
+INSERT INTO Customer_Phone VALUES ('CUS0001',9735357747);
+INSERT INTO Customer_Phone VALUES ('CUS0001',9574837563);
+INSERT INTO Customer_Phone VALUES ('CUS0002',9525503680);
+INSERT INTO Customer_Phone VALUES ('CUS0003',9325968405);
+INSERT INTO Customer_Phone VALUES ('CUS0003',9576835122);
+INSERT INTO Customer_Phone VALUES ('CUS0004',9905340062);
+INSERT INTO Customer_Phone VALUES ('CUS0005',9083353325);
+INSERT INTO Customer_Phone VALUES ('CUS0006',9410466202);
+INSERT INTO Customer_Phone VALUES ('CUS0007',9622792033);
+INSERT INTO Customer_Phone VALUES ('CUS0008',9687033613);
+INSERT INTO Customer_Phone VALUES ('CUS0009',9603322873);
+INSERT INTO Customer_Phone VALUES ('CUS0010',9065935965);
+INSERT INTO Customer_Phone VALUES ('CUS0011',9472156452);
+INSERT INTO Customer_Phone VALUES ('CUS0012',9629356377);
+INSERT INTO Customer_Phone VALUES ('CUS0013',9574234047);
+INSERT INTO Customer_Phone VALUES ('CUS0014',9286677839);
+INSERT INTO Customer_Phone VALUES ('CUS0015',9472365603);
+INSERT INTO Customer_Phone VALUES ('CUS0016',9503504915);
+INSERT INTO Customer_Phone VALUES ('CUS0017',9001834537);
+INSERT INTO Customer_Phone VALUES ('CUS0018',9661640044);
+INSERT INTO Customer_Phone VALUES ('CUS0019',9572711067);
+INSERT INTO Customer_Phone VALUES ('CUS0020',9917727864);
+INSERT INTO Customer_Phone VALUES ('CUS0021',9743745647);
+INSERT INTO Customer_Phone VALUES ('CUS0022',9435726824);
+INSERT INTO Customer_Phone VALUES ('CUS0023',9877657287);
+INSERT INTO Customer_Phone VALUES ('CUS0024',9328009512);
+INSERT INTO Customer_Phone VALUES ('CUS0025',9410305306);
+INSERT INTO Customer_Phone VALUES ('CUS0026',9523795942);
+INSERT INTO Customer_Phone VALUES ('CUS0027',9882969989);
+INSERT INTO Customer_Phone VALUES ('CUS0028',9496805372);
+INSERT INTO Customer_Phone VALUES ('CUS0029',9614662067);
+INSERT INTO Customer_Phone VALUES ('CUS0030',9275072507);
+INSERT INTO Customer_Phone VALUES ('CUS0031',9229203872);
+INSERT INTO Customer_Phone VALUES ('CUS0032',9622571186);
+INSERT INTO Customer_Phone VALUES ('CUS0033',9969861615);
+INSERT INTO Customer_Phone VALUES ('CUS0034',9761839557);
+INSERT INTO Customer_Phone VALUES ('CUS0035',9474376611);
+INSERT INTO Customer_Phone VALUES ('CUS0036',9063926813);
+INSERT INTO Customer_Phone VALUES ('CUS0037',9002626319);
+INSERT INTO Customer_Phone VALUES ('CUS0038',9882316880);
+INSERT INTO Customer_Phone VALUES ('CUS0039',9209443914);
+INSERT INTO Customer_Phone VALUES ('CUS0040',9014315900);
+INSERT INTO Customer_Phone VALUES ('CUS0041',9762042901);
+INSERT INTO Customer_Phone VALUES ('CUS0042',9535711184);
+INSERT INTO Customer_Phone VALUES ('CUS0043',9031194282);
+INSERT INTO Customer_Phone VALUES ('CUS0044',9347257646);
+INSERT INTO Customer_Phone VALUES ('CUS0045',9540859396);
+INSERT INTO Customer_Phone VALUES ('CUS0046',9216552235);
+INSERT INTO Customer_Phone VALUES ('CUS0047',9219568851);
+INSERT INTO Customer_Phone VALUES ('CUS0048',9258520457);
+INSERT INTO Customer_Phone VALUES ('CUS0049',9128795412);
+INSERT INTO Customer_Phone VALUES ('CUS0050',9014375173);
+
+INSERT INTO Product_Category(CategoryID,Name) VALUES (1,'Health Care');
+INSERT INTO Product_Category(CategoryID,Name) VALUES (2,'Skin Care');
+INSERT INTO Product_Category(CategoryID,Name) VALUES (3,'Personal Care');
+INSERT INTO Product_Category(CategoryID,Name) VALUES (4,'Home Care');
+INSERT INTO Product_Category(CategoryID,Name) VALUES (5,'Agriculture');
+INSERT INTO Product_Category(CategoryID,Name) VALUES (6,'Food Products');
+
+INSERT INTO Products VALUES (1000,'Alkaline & Anti-Bacterial Ceramic Balls','1',1,120,400,300,120,'18%',1);
+INSERT INTO Products VALUES (1001,'Aloe Aam Pachak','100 gm',1,60,99,90,25,'12%',1);
+INSERT INTO Products VALUES (1002,'Aloe Ajwain Pachak','100 gm',30,30,75,65,20,'12%',1);
+INSERT INTO Products VALUES (1003,'Aloe Amla Candy','200 gm',30,30,105,85,20,'5%',1);
+INSERT INTO Products VALUES (1004,'Aloe Anardana Pachak','100 gm',30,30,75,65,20,'12%',1);
+INSERT INTO Products VALUES (1005,'Aloe Blood Purifier Syrup','200 ml',60,60,150,125,48,'12%',1);
+INSERT INTO Products VALUES (1006,'Aloe Cal-D Tablet','30 Tab',1,60,360,260,100,'12%',1);
+INSERT INTO Products VALUES (1007,'Aloe Cal-D Tablet','30 Tab',30,30,360,260,100,'12%',1);
+INSERT INTO Products VALUES (1008,'Aloe Charcoal Dental Gel','100 gm',50,50,160,120,40,'18%',1);
+INSERT INTO Products VALUES (1009,'Aloe Digest','30 ml',60,60,160,115,50,'12%',1);
+INSERT INTO Products VALUES (1010,'Aloe Harad Pachak','100 gm',30,30,75,65,20,'12%',1);
+INSERT INTO Products VALUES (1011,'Aloe Hing Pachak','100 gm',30,30,75,65,20,'12%',1);
+INSERT INTO Products VALUES (2000,'Aloe Jeera Pachak','100 gm',60,60,75,65,20,'12%',1);
+INSERT INTO Products VALUES (2001,'Aloe Anti Aging Cream','60 gm',1,60,390,275,100,'18%',2);
+INSERT INTO Products VALUES (2002,'Aloe Cream','60 gm',30,60,220,155,60,'18%',2);
+INSERT INTO Products VALUES (2003,'ALOE FACE CLEANSER + HERBAL ALOE CREAM','100 gm',1,30,250,210,80,'18%',2);
+INSERT INTO Products VALUES (2004,'Aloe Face Wash With Haldi & Chandan','100 gm',30,30,250,180,65,'18%',2);
+INSERT INTO Products VALUES (2005,'Aloe Rose Water','100 ml',25,50,140,105,30,'18%',2);
+INSERT INTO Products VALUES (2006,'Aloe Sunscreen Lotion Big','100 gm',10,30,390,275,100,'18%',2);
+INSERT INTO Products VALUES (2007,'Aloe Sunscreen Lotion Smol','60 gm',60,60,190,140,50,'18%',2);
+INSERT INTO Products VALUES (2008,'Aloe Wipes','20 Pc',42,42,120,80,32,'12%',2);
+INSERT INTO Products VALUES (2009,'Alovera Bathing Soap','Pcs',100,100,30,25,5,'18%',2);
+INSERT INTO Products VALUES (2010,'Anti Aging Cream','60 gm',15,30,390,275,100,'18%',2);
+INSERT INTO Products VALUES (3000,'Acupressure Pads','Pcs',1,20,350,185,75,'12%',3);
+INSERT INTO Products VALUES (3001,'Aerobic Exerciser','Pcs',1,1,5000,4250,1050,'18%',3);
+INSERT INTO Products VALUES (3002,'Almond Hair Oil','100 ml',1,60,325,270,100,'18%',3);
+INSERT INTO Products VALUES (3003,'Aloe After Shave Gel','100 gm',1,60,325,230,80,'18%',3);
+INSERT INTO Products VALUES (3004,'Aloe Baby Hair & Body Wash','250 ml',1,30,395,275,95,'18%',3);
+INSERT INTO Products VALUES (3005,'Aloe Baby Hair & Body Wash','200 ml',10,30,225,170,60,'18%',3);
+INSERT INTO Products VALUES (3006,'Aloe Baby Massage Oil','100 ml',20,60,375,260,90,'18%',3);
+INSERT INTO Products VALUES (3007,'Aloe Baby Soap (Ayurvedic)','75 gm',20,100,95,75,25,'18%',3);
+INSERT INTO Products VALUES (3008,'Aloe Baby Talcum Powder','100 gm',10,30,225,160,55,'18%',3);
+INSERT INTO Products VALUES (3009,'Aloe Baby Wipes','Pcs',12,24,210,170,60,'12%',3);
+INSERT INTO Products VALUES (3010,'Aloe Bright Bar','100 Gm',50,50,25,20,5,'18%',3);
+INSERT INTO Products VALUES (4000,'ABC Carpet','5m',1,10,5000,4250,1050,'18%',4);
+INSERT INTO Products VALUES (4001,'Rinz Water Bottles','1L',5,25,100,95,25,'12%',4);
+INSERT INTO Products VALUES (6000,'Aloe Coco Cookies (Sweet)','150 gm',24,24,80,70,15,'18%',6);
+INSERT INTO Products VALUES (6001,'Aloe Cumin Cookies (Salted)','150 gm',24,24,80,70,15,'18%',6);
+INSERT INTO Products VALUES (3011,'Aloe Dental Cream','100 gm',100,100,115,90,25,'18%',3);
+INSERT INTO Products VALUES (6002,'Aloe Multigrain Atta','1 Kg',1,12,300,250,75,'5%',6);
+INSERT INTO Products VALUES (6003,'Aloe Protein Diet (Corn Pudina Triangle)','60 gm',1,50,35,30,6,'12%',6);
+INSERT INTO Products VALUES (6004,'Aloe Protein Diet (Soya Bhel)','60 gm',1,50,35,30,6,'12%',6);
+INSERT INTO Products VALUES (6005,'Aloe Protein Diet (Soya Cheese Sticks)','60 gm',1,50,35,30,6,'12%',6);
+INSERT INTO Products VALUES (6006,'Aloe Protein Diet (Soya Katori)','60 gm',1,50,35,30,6,'12%',6);
+INSERT INTO Products VALUES (6007,'Aloe Protein Diet (Wheat Puff)','60 gm',1,50,35,30,6,'12%',6);
+INSERT INTO Products VALUES (5000,'Agro Activator','500 ml',12,24,595,495,180,'18%',5);
+INSERT INTO Products VALUES (5001,'Herbal Agro Growth Booster','1 Ltr',12,12,725,560,250,'18%',5);
+INSERT INTO Products VALUES (5002,'Herbal Agro Growth Booster','500 ml',15,15,450,310,135,'18%',5);
+INSERT INTO Products VALUES (5003,'Herbal Aloe Vical','5 Ltr',2,2,650,525,150,'0%',5);
+INSERT INTO Products VALUES (5004,'Herbal Aloe Vita','1 Kg',12,12,300,225,100,'0%',5);
+INSERT INTO Products VALUES (6008,'Imc Swadisht Pachak Churan With Himalayan Berry','Pcs',1,30,130,105,40,'12%',6);
+INSERT INTO Products VALUES (6009,'Saboot Jeera','100 gm',30,30,75,60,15,'5%',6);
+
+INSERT INTO Orders VALUES ('OR2346','11-02-2019',1392.5,'CUS0001');
+INSERT INTO Orders VALUES ('OR1728','26-02-2019',498,'CUS0002');
+INSERT INTO Orders VALUES ('OR1961','18-03-2019',760.2,'CUS0003');
+INSERT INTO Orders VALUES ('OR7452','04-04-2019',1376,'CUS0004');
+INSERT INTO Orders VALUES ('OR4671','16-04-2019',447,'CUS0005');
+INSERT INTO Orders VALUES ('OR1924','23-05-2019',525,'CUS0006');
+INSERT INTO Orders VALUES ('OR7023','24-05-2019',795,'CUS0007');
+INSERT INTO Orders VALUES ('OR3452','19-06-2019',823.5,'CUS0008');
+INSERT INTO Orders VALUES ('OR9084','01-08-2019',1939.5,'CUS0009');
+INSERT INTO Orders VALUES ('OR3472','07-08-2019',232,'CUS0010');
+INSERT INTO Orders VALUES ('OR1276','13-09-2019',110,'CUS0011');
+INSERT INTO Orders VALUES ('OR7654','15-10-2019',110,'CUS0012');
+INSERT INTO Orders VALUES ('OR3200','19-10-2019',205.5,'CUS0013');
+INSERT INTO Orders VALUES ('OR5472','20-11-2019',250,'CUS0014');
+INSERT INTO Orders VALUES ('OR6391','17-12-2019',220,'CUS0015');
+INSERT INTO Orders VALUES ('OR7847','06-03-2020',110,'CUS0016');
+INSERT INTO Orders VALUES ('OR9229','13-03-2020',110,'CUS0017');
+INSERT INTO Orders VALUES ('OR1003','03-04-2020',500,'CUS0018');
+INSERT INTO Orders VALUES ('OR1386','09-06-2020',500,'CUS0019');
+
+INSERT INTO Order_Details VALUES ('OR2346',3,3005,796.5);
+INSERT INTO Order_Details VALUES ('OR2346',4,2002,596);
+INSERT INTO Order_Details VALUES ('OR1728',6,1003,498);
+INSERT INTO Order_Details VALUES ('OR1961',1,1005,120.2);
+INSERT INTO Order_Details VALUES ('OR1961',1,1009,110);
+INSERT INTO Order_Details VALUES ('OR1961',2,1010,530);
+INSERT INTO Order_Details VALUES ('OR7452',3,1011,795);
+INSERT INTO Order_Details VALUES ('OR7452',7,1003,581);
+INSERT INTO Order_Details VALUES ('OR4671',3,2002,447);
+INSERT INTO Order_Details VALUES ('OR1924',5,1003,415);
+INSERT INTO Order_Details VALUES ('OR1924',1,1009,110);
+INSERT INTO Order_Details VALUES ('OR7023',3,1010,795);
+INSERT INTO Order_Details VALUES ('OR3452',1,6002,242.5);
+INSERT INTO Order_Details VALUES ('OR3452',7,1003,581);
+INSERT INTO Order_Details VALUES ('OR9084',3,1008,348);
+INSERT INTO Order_Details VALUES ('OR9084',3,3005,796.5);
+INSERT INTO Order_Details VALUES ('OR9084',3,1010,795);
+INSERT INTO Order_Details VALUES ('OR3472',2,1008,232);
+INSERT INTO Order_Details VALUES ('OR1276',1,1009,110);
+INSERT INTO Order_Details VALUES ('OR7654',1,1009,110);
+INSERT INTO Order_Details VALUES ('OR3200',3,6000,205.5);
+INSERT INTO Order_Details VALUES ('OR5472',1,1006,250);
+INSERT INTO Order_Details VALUES ('OR6391',2,1009,220);
+INSERT INTO Order_Details VALUES ('OR7847',1,1009,110);
+INSERT INTO Order_Details VALUES ('OR9229',1,1009,110);
+INSERT INTO Order_Details VALUES ('OR1003',2,1006,500);
+INSERT INTO Order_Details VALUES ('OR1386',2,1006,500);
+
+INSERT INTO Payment VALUES ('OR2346','11-02-2019',1392.5,'credit card');
+INSERT INTO Payment VALUES ('OR1728','26-02-2019',498,'upi');
+INSERT INTO Payment VALUES ('OR1961','18-03-2019',760.2,'debit card');
+INSERT INTO Payment VALUES ('OR7452','04-04-2019',1376,'sodexo');
+INSERT INTO Payment VALUES ('OR4671','16-04-2019',447,'cash');
+INSERT INTO Payment VALUES ('OR1924','23-05-2019',525,'debit card');
+INSERT INTO Payment VALUES ('OR7023','24-05-2019',795,'sodexo');
+INSERT INTO Payment VALUES ('OR3452','19-06-2019',823.5,'credit card');
+INSERT INTO Payment VALUES ('OR9084','01-08-2019',1940,'sodexo');
+INSERT INTO Payment VALUES ('OR3472','07-08-2019',230,'cash');
+INSERT INTO Payment VALUES ('OR1276','13-09-2019',110,'debit card');
+INSERT INTO Payment VALUES ('OR7654','15-10-2019',110,'sodexo');
+INSERT INTO Payment VALUES ('OR3200','19-10-2019',205,'cash');
+INSERT INTO Payment VALUES ('OR5472','20-11-2019',250,'upi');
+INSERT INTO Payment VALUES ('OR6391','17-12-2019',220,'credit card');
+INSERT INTO Payment VALUES ('OR7847','06-03-2020',110,'sodexo');
+INSERT INTO Payment VALUES ('OR9229','13-03-2020',110,'cash');
+INSERT INTO Payment VALUES ('OR1003','03-04-2020',500,'upi');
+INSERT INTO Payment VALUES ('OR1386','09-06-2020',500,'debit card');
+
+INSERT INTO Distributor VALUES ('DIS0001','LAKSHMI NARASIMHA HERBAL PRODUCTS','GOVINDA REDDY COMPLEX, D.NO. 18/713, VINUGOPAL NAGAR, ANANTAPURAMU, Anantapur, 515001, Anantapur, Ananthapur, Andhra Pradesh','Ananthapur','Andhra Pradesh');
+INSERT INTO Distributor VALUES ('DIS0002','SRI THULASI AYURVEDIC HERBAL STORE','16/6/4, NUT BAZAR, Hindupur, 515201, Hindupur, Ananthapur, Andhra Pradesh','Ananthapur','Andhra Pradesh');
+INSERT INTO Distributor VALUES ('DIS0003','HIMA DEEPIKA HERBALS','2-591, 4Th road , NEAR ANJANEYA SWAMY TEMPLE, ANANTAPUR, 515004, Anantapur, Ananthapur, Andhra Pradesh','Ananthapur','Andhra Pradesh');
+INSERT INTO Distributor VALUES ('DIS0004','SAI REKHA AYURVEDIC HERBAL STORES','# 3-2366, SAI SADAN, SAI TEMPLE, VIVEKANANDA ROAD, PUTTAPARTHI, 515134, Penu Konda, Ananthapur, Andhra Pradesh','Ananthapur','Andhra Pradesh');
+INSERT INTO Distributor VALUES ('DIS0005','GREENLEAF AYURVEDIC','1-515-A, RUDRAMPETA, RUDRAMPETA, 515001, Anantapur, Ananthapur, Andhra Pradesh','Ananthapur','Andhra Pradesh');
+INSERT INTO Distributor VALUES ('DIS0006','SHRI SAI IMC AYURVEDIC & ORGANIC STORE','3/782-A, A S R NAGAR., TAPOVANAM, 515004, Anantapur, Ananthapur, Andhra Pradesh','Ananthapur','Andhra Pradesh');
+INSERT INTO Distributor VALUES ('DIS0007','KIRAN ENTERPRISES','19-1-19, NEAR OLD PANCHAYAT OFFICE, REVENUE WARD NO.12, Balighattam, 531116, Narsipatnam, Visakhapatnam, Andhra Pradesh','Visakhapatnam','Andhra Pradesh');
+INSERT INTO Distributor VALUES ('DIS0008','SHREEJAY ENTERPRISES','DOOR NO.48-10-24,OPP RTC COMPLEX LANE,LAND MARK VARDHAN SUPER MARKET, Dwaraka nagar, 530016, Visakhapatnam(urban), Visakhapatnam, Andhra Pradesh','Visakhapatnam','Andhra Pradesh');
+INSERT INTO Distributor VALUES ('DIS0009','LEELA ENTERPRISES','3-11-71/2, FIRST FLOOR, EAST SIDE FIRST SHATTER, OPP. RAITU BAZAAR AND MASEED, Gajuwaka, 530026, Gajuwaka, Visakhapatnam, Andhra Pradesh','Visakhapatnam','Andhra Pradesh');
+INSERT INTO Distributor VALUES ('DIS0010','SHANMUKHA ENTERPRISES','FIRST FLOOR 36-46-78, REDDY KANCHARAPALEM, R.C.C SHOP, NEAR ANUPAMA HOTEL, Visakhapatnam (urban, 530008, Visakhapatnam(urban), Visakhapatnam, Andhra Pradesh','Visakhapatnam','Andhra Pradesh');
+INSERT INTO Distributor VALUES ('DIS0011','SRI VIJAYA ENTERPRISES','13-244,DONKADA,AGANAMPUDI,RAMALAYAM,, PEDAMADAKA,VISAKHAPATNAM,PIN CODE :530046, AGANAMPUDI, 530046, Visakhapatnam(urban), Visakhapatnam, Andhra Pradesh','Visakhapatnam','Andhra Pradesh');
+INSERT INTO Distributor VALUES ('DIS0012','SRI VENKATESHWARA AYURVEDIC AND ORGANIC GENERAL STORE','49-34-10/3,ABIDNAGAR,BESIDE SBI,AKAYAPALEM,, VISAKHAPATNAM(URBAN),VISAKHAPATNAM,, ANDHRAPRADESH,PIN CODE 530016, AKAYYAPALEM, 530016, Visakhapatnam(urban), Visakhapatnam, Andhra Pradesh','Visakhapatnam','Andhra Pradesh');
+INSERT INTO Distributor VALUES ('DIS0013','SRI KRISHNA ORGANICS AND HERBALS','47-57-16/19 FLOAT NO -1 4TH FLOOR, 3RD LINE NARASIMHA NAGAR, AKKAYAPALEM, AKKAYAPALEM, 530024, Visakhapatnam(urban), Visakhapatnam, Andhra Pradesh','Visakhapatnam','Andhra Pradesh');
+INSERT INTO Distributor VALUES ('DIS0014','SRI SAI GANESH AYURVEDIC HUB','45-33-44 SANGAM OFFICE,BESIDE VIVEKANANDA HOSPITAL, AKKAYYAPALEM, 530016, Visakhapatnam(urban), Visakhapatnam, Andhra Pradesh','Visakhapatnam','Andhra Pradesh');
+INSERT INTO Distributor VALUES ('DIS0015','KEERTHI AYURVEDIC AND ORGANIC STORE','AKKIREDDI PALEM 1-1-63 B H P V, AKKIREDDI PALEM, 530012, Gajuwaka, Visakhapatnam, Andhra Pradesh','Visakhapatnam','Andhra Pradesh');
+INSERT INTO Distributor VALUES ('DIS0016','NICE AYURVEDIC & ORGANIC HUB','1-3-70/1,AKKIREDDYPALEM,B H P V ,GAJUWAKA,, VISAKHAPATNAM,ANDHRAPRADESH,PINCODE:530012, AKKIREDDY PALEM, 530012, Gajuwaka, Visakhapatnam, Andhra Pradesh','Visakhapatnam','Andhra Pradesh');
+INSERT INTO Distributor VALUES ('DIS0017','IMC Hyderabad','1-19-71/A-7P, PLNO RUKMINIPURI COLONY,, KAPRA SAINIKPUR, Kushaiguda, 500062, Secunderabad, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0018','M/S NATRAJ BATTERIES','PILLAR NO. MGBS1358, NEAR THUMBAY HOSPITAL NEW LIFE, CHANDERGHAT ROAD, CHANDERGHAT, 500024, Charminar, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0019','SRI VASAVI AND CO','2-3-199/3, ROAD NO. 1, ADARSH NAGAR COLONY, NAGOLE, LB NAGAR, Hyderabad, 500035, Saidabad, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0020','DHANVANTHARI AGENCIES','1-19-71/A-7P , PLNO RUKMINIPURI COLONY, KAPRA SAINIKPUR, Kushaiguda, 500062, Secunderabad, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0021','Sai Manikanta Enterprises','H.NO. 6-1-132/17/A, SHOP NO. 4, NEAR SKANDAGIRI TEMPLE, Padmaraonagar, 500025, Secunderabad, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0022','SPARSH ORGANIC','PLOT NO 3-3-614, SULTAN BAZAR ROAD, RAJAMOHALLAH, NEAR ARYA SAMAJ MANDIR, Qutbiguda, 500027, Himayathnagar, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0023','KARTIKEYA ENTERPRISES','FLAT NO.103, RAMACHANDRA NIVAS, Vengal Rao Nagar, 500038, Khairatabad, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0024','TEJA ORGANIC IMC STORE','1-1-262 87, SRINIVASA NAGAR., A S RAO NAGAR, 500062, Ameerpet, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0025','Vijaya Organic & Ayurvedham Store','h.no-1-19-68/A-13, flat no-406,, prasanthi heights,a.s.rao nagar,, secunderabad,telangana-500062, a s rao nagar, 500062, Secunderabad, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0026','Meenakshi Corporation','Shop.no-13,Raghav Ratna towers,chirag ali lane,, Abids,hyderabad,, telangana-500001, ABIDS, 500001, Nampally, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0027','Ashraya IMC Organic and Ayurveda','h.no-8-9-28,yesunadhapuram street,, allagadda,mdg,kurnool,, andhra pradesh, Allagadda, 500025, Secunderabad, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0028','Monal Organic Ayurvedic Herbal Products','H.no-18-1/1, Ram nagar colony,Vaishnavi matha temple,, Alwal,Secunderabad, Hyderabad,Telangana-500010, ALWAL, 500010, Secunderabad, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0029','SAI DHANVANTRI ORGANIC STORE','H NO-1-4-148,KUMMARI BASTHI,, ALWAL, 500010, Ameerpet, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0030','SHIVOHAM AYURVEDIC HERBAL INDIA','PLOT NO.77,H.NO.1-5-852,OM SRI SAI NAGAR COLONY,OLD ALWAL,SECUNDERABAD., Alwal, 500010, Secunderabad, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0031','venu gopal imc herbal store','AMBER NAGAR, AMBERNAGAR, 500044, Secunderabad, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0032','GRUHAN ORGANIC INDIAN AYURVEDIC STORE','H.no-2-2-644/7/A,Street no-10, Bahg , Amberpet, 500013, Amberpet, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0033','Kavitha Nalanda IMC Herbal India','Flat no. 305, legend Appartment, Sbi officers colony, Amberpet, 500036, Saidabad, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0034','PRIYA HERBAL STORE','3-4-852-1 KESHVA NILAYAM, BARKATPURA, AMBERPET, AMBERPET, 500027, Himayathnagar, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0035','AVR (IMC) HEALTH CARE PRODUCTS','SHOP NO - 11, HUDA MAITRIVANAM., AMEERPET, 500018, Ameerpet, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0036','CHARAN IMC ORGANIC STORE','8-3-945/A, SRI NAGAR COLONY, NAGARJUNA NAGAR., AMEERPET, 500082, Ameerpet, Hyderabad, Telangana','Hyderabad','Telangana');
+INSERT INTO Distributor VALUES ('DIS0037','KRISHNAVENY HERBALS','Geethalaya Apartments, No. 7/13, Medley Road,T.Nagar,, Chennai, 600017, Chennai, Chennai, Tamil Nadu','Chennai','Tamil Nadu');
+INSERT INTO Distributor VALUES ('DIS0038','MALESHWAR HERBAL STORE','No.52, Salaima Nagar, Bricklin Road,Purasaiwalkam, Chennai, 600007, Chennai, Chennai, Tamil Nadu','Chennai','Tamil Nadu');
+INSERT INTO Distributor VALUES ('DIS0039','VENKATESWARA HERBALS','AF/1 24/22 guru akshaya apartments, kanakammal colony, Chennai, 600061, Chennai, Chennai, Tamil Nadu','Chennai','Tamil Nadu');
+INSERT INTO Distributor VALUES ('DIS0040','SHRISHTI HERBAL INDIA','GROUND FLOOR , OLD NO: 477, SOWCAR COMPLEX , MINT STREET , KONDITHOPE, CHENNAI, TAMIL NADU, 600001, Chennai G.P.O., 600001, Chennai, Chennai, Tamil Nadu','Chennai','Tamil Nadu');
+INSERT INTO Distributor VALUES ('DIS0041','SNGB AYURVEDA INC','SHOP NO.90/133,CORAL MERCHANT STREET, MANNADY, 600001, Chennai, Chennai, Tamil Nadu','Chennai','Tamil Nadu');
+INSERT INTO Distributor VALUES ('DIS0042','JAI HARESH AYURVEDIC AND HERBAL CENTRE','NO.13,TNRDC COMPLEX,OMR,KANDANCHAVADI, Perungudi OMR, 600096, Chennai, Chennai, Tamil Nadu','Chennai','Tamil Nadu');
+INSERT INTO Distributor VALUES ('DIS0043','R V HEALTH CARE','DOOR NO. 216/47 2ND FLOOR, DURAI COMPLEX, RAJA MILL ROAD, POLLACHI TOWN, Pollachi, 642001, Pollachi, Coimbatore, Tamil Nadu','Coimbatore','Tamil Nadu');
+INSERT INTO Distributor VALUES ('DIS0044','SRI LAKSHMI IMC HERBAL','17/3, MAHALAKSHMI AVENUE, VAGARAYAMPALAYAM, Kaniyur-palladam, 641659, Coimbatore South, Coimbatore, Tamil Nadu','Coimbatore','Tamil Nadu');
+INSERT INTO Distributor VALUES ('DIS0045','JAY JAGANNATH MOBILES','11/149 GANESHAPURAM, KATTAMPATTI, 641107, Coimbatore North, Coimbatore, Tamil Nadu','Coimbatore','Tamil Nadu');
+INSERT INTO Distributor VALUES ('DIS0046','IMC NAVAJIWAN AYURVEDA','5/194, Coimbatore Polytech Pvt Ltd, Naranapuram, Arasur Post, Naranapuram, 641407, Coimbatore South, Coimbatore, Tamil Nadu','Coimbatore','Tamil Nadu');
+INSERT INTO Distributor VALUES ('DIS0047','SANTHI HERBALS','4/168, Karupparayan Kovil street, Ramanathapuram, Puliyakulam, 641045, Coimbatore South, Coimbatore, Tamil Nadu','Coimbatore','Tamil Nadu');
+INSERT INTO Distributor VALUES ('DIS0048','MAHADEV IMC HERBAL STORE','88/60, East Street, Sidhanaickan Palayam, Siddanaickenpalayam, 641658, Coimbatore South, Coimbatore, Tamil Nadu','Coimbatore','Tamil Nadu');
+INSERT INTO Distributor VALUES ('DIS0049','IMC SHIVASHANKAR AYURVEDA','DOOR NO- 64/2, U K N STREET, Sulur, 641402, Sulur, Coimbatore, Tamil Nadu','Coimbatore','Tamil Nadu');
+
+INSERT INTO Inventory VALUES (1,1003,13,260,83,'DIS0001');
+INSERT INTO Inventory VALUES (2,1005,6,288,120.2,'DIS0002');
+INSERT INTO Inventory VALUES (3,1006,3,300,250,'DIS0003');
+INSERT INTO Inventory VALUES (4,1008,8,320,116,'DIS0004');
+INSERT INTO Inventory VALUES (5,1009,3,150,110,'DIS0005');
+INSERT INTO Inventory VALUES (6,1010,3,300,265,'DIS0006');
+INSERT INTO Inventory VALUES (7,2002,4,240,149,'DIS0007');
+INSERT INTO Inventory VALUES (8,3000,1,75,177.5,'DIS0008');
+INSERT INTO Inventory VALUES (9,3005,2,190,265.5,'DIS0009');
+INSERT INTO Inventory VALUES (10,3007,5,125,72.5,'DIS0046');
+INSERT INTO Inventory VALUES (11,4001,10,250,95,'DIS0047');
+INSERT INTO Inventory VALUES (12,6000,5,75,68.5,'DIS0048');
+INSERT INTO Inventory VALUES (13,6002,7,525,242.5,'DIS0049');
+INSERT INTO Inventory VALUES (14,5003,6,900,525,'DIS0022');
+INSERT INTO Inventory VALUES (15,5004,4,400,225,'DIS0023');
+INSERT INTO Inventory VALUES (16,6009,5,75,58.5,'DIS0024');
+INSERT INTO Inventory VALUES (17,5000,2,360,495,'DIS0025');
+INSERT INTO Inventory VALUES (18,6003,10,60,30,'DIS0026');
+INSERT INTO Inventory VALUES (19,3009,5,300,170,'DIS0027');
+INSERT INTO Inventory VALUES (20,3006,2,180,251,'DIS0028');
