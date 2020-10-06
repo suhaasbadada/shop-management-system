@@ -28,3 +28,8 @@ SELECT Inventory.Product_ID,Distributor.Name,Distributor.Address
 FROM Distributor
 INNER JOIN Inventory
 ON Distributor.Dis_ID=Inventory.Dis_ID;
+
+SELECT Orders.Order_ID,Customer_Phone.Phone_No
+FROM Customer_Phone
+INNER JOIN Orders
+ON Customer_Phone.Customer_ID=Orders.Customer_ID;
