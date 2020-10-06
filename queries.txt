@@ -1,0 +1,30 @@
+
+SELECT 
+    Customer.Customer_ID,Orders.Order_ID,Orders.Purchase_Amount,Payment.Method_of_Payment
+FROM
+    Customer
+INNER JOIN
+	Orders ON Customer.Customer_ID = Orders.Customer_ID
+INNER JOIN
+    Payment ON Payment.Order_ID =Orders.Order_ID;
+
+SELECT Orders.*,Order_Details.* 
+FROM Orders
+INNER JOIN Order_Details
+ON Orders.Order_ID=Order_Details.Order_ID;
+
+SELECT Product_Category.* 
+FROM Product_Category 
+INNER JOIN Products
+ON Product_Category.CategoryID=Products.CategoryID;
+
+SELECT Products.CategoryID,COUNT(Products.Name) 
+FROM Product_Category 
+INNER JOIN Products 
+ON Product_Category.CategoryID=Products.CategoryID 
+GROUP BY Products.CategoryID;
+
+SELECT Inventory.Product_ID,Distributor.Name,Distributor.Address
+FROM Distributor
+INNER JOIN Inventory
+ON Distributor.Dis_ID=Inventory.Dis_ID;
