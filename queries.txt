@@ -1,3 +1,23 @@
+// NUMBER OF ORDERS ACCORDING TO METHOD OF PAYMENT
+SELECT Count(Order_ID) as "NUMBER OF ORDERS",Method_of_Payment
+FROM Payment
+GROUP BY Method_of_Payment;
+
+// NUMBER OF DISTRIBUTORS BY STATE AND DISTRICT
+SELECT State,District,Count(Dis_ID) as "NUMBER OF DISTRIBUTORS"
+FROM Distributor
+GROUP BY State,District;
+
+// AVERAGE PRICE UNITS BY CATEGORY ID 
+SELECT CategoryID,AVG(PriceUnit)
+FROM Products
+GROUP BY CategoryID;
+
+// AVERAGE AMOUNT RECEIVED FOR DIFFERENT TYPES OF PAYMENT METHODS
+SELECT Method_of_Payment,Count(Order_ID) as "NUMBER OF ORDERS",AVG(Amount) as "AVERAGE AMOUNT"
+FROM Payment
+GROUP BY Method_of_Payment;
+
 
 SELECT 
     Customer.Customer_ID,Orders.Order_ID,Orders.Purchase_Amount,Payment.Method_of_Payment
