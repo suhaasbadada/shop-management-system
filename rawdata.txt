@@ -7,18 +7,15 @@ CREATE TABLE Customer(
 ,PRIMARY KEY(Customer_ID)
 );
 
-
 CREATE TABLE Customer_Phone(
 Customer_ID varchar(10)
 ,Phone_No varchar(10), PRIMARY KEY(Phone_No), FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID)
 );
 
-
 CREATE TABLE Product_Category(
    Category_ID VARCHAR(20)  NOT NULL PRIMARY KEY 
   ,Name VARCHAR(20)  NOT NULL
 );
-
 
 CREATE TABLE Products(
   Product_ID        VARCHAR(10) PRIMARY KEY
@@ -33,6 +30,52 @@ CREATE TABLE Products(
   ,Category_ID VARCHAR(20)
 ,FOREIGN KEY (Category_ID) REFERENCES Product_Category(Category_ID)
 );
+
+CREATE TABLE Orders(
+   Order_ID        VARCHAR(10) NOT NULL PRIMARY KEY
+  ,Order_Date      VARCHAR(20)  NOT NULL
+  ,Purchase_Amount INTEGER NOT NULL
+  ,Customer_ID     VARCHAR(10) NOT NULL
+  , FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID) 
+);
+
+CREATE TABLE Order_Details(
+   Order_ID   VARCHAR(10) NOT NULL 
+  ,Unit       INTEGER  NOT NULL
+  ,Product_ID VARCHAR(10) NOT NULL
+  ,Amount     INTEGER NOT NULL
+  , PRIMARY KEY(Order_ID,Product_ID) 
+);
+
+CREATE TABLE Payment(
+   Order_ID          VARCHAR(10) NOT NULL PRIMARY KEY
+  ,Payment_Date      VARCHAR(20) NOT NULL
+  ,Amount            INTEGER NOT NULL
+  ,Method_of_Payment VARCHAR(20) NOT NULL
+  ,FOREIGN KEY (Order_ID) REFERENCES Orders(Order_ID)
+);
+
+
+CREATE TABLE Distributor(
+   Distributor_ID   VARCHAR(10) NOT NULL PRIMARY KEY
+  ,Name     VARCHAR(100) NOT NULL
+  ,Address  VARCHAR(500) NOT NULL
+  ,District VARCHAR(20) NOT NULL
+  ,State    VARCHAR(20) NOT NULL
+);
+
+
+CREATE TABLE Inventory(
+   SNo              INTEGER  NOT NULL PRIMARY KEY 
+  ,Product_ID       VARCHAR(20)  NOT NULL
+  ,Unit_or_Quantity INTEGER  NOT NULL
+  ,TBV              INTEGER  NOT NULL
+  ,PriceUnit        INTEGER NOT NULL
+  ,Distributor_ID   VARCHAR(20) NOT NULL
+  ,FOREIGN KEY(Product_ID) REFERENCES Products(Product_ID)
+  ,FOREIGN KEY(Distributor_ID) REFERENCES Distributor(Distributor_ID)
+);
+
 INSERT INTO Customer VALUES ('CUS0001','Agney','Singh','Talwar','agneys@gmail.com');
 INSERT INTO Customer VALUES ('CUS0002','Manoj',NULL,'Raj','manojr@gmail.com');
 INSERT INTO Customer VALUES ('CUS0003','Sanjay','Mohan','Sharma','ssharma@gmail.com');
@@ -335,52 +378,3 @@ INSERT INTO Inventory VALUES (17,5000,2,360,495,'DIS0025');
 INSERT INTO Inventory VALUES (18,6003,10,60,30,'DIS0026');
 INSERT INTO Inventory VALUES (19,3009,5,300,170,'DIS0027');
 INSERT INTO Inventory VALUES (20,3006,2,180,251,'DIS0028');
-
-
-
-CREATE TABLE Orders(
-   Order_ID        VARCHAR(10) NOT NULL PRIMARY KEY
-  ,Order_Date      VARCHAR(20)  NOT NULL
-  ,Purchase_Amount INTEGER NOT NULL
-  ,Customer_ID     VARCHAR(10) NOT NULL
-  , FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID) 
-);
-
-
-CREATE TABLE Order_Details(
-   Order_ID   VARCHAR(10) NOT NULL 
-  ,Unit       INTEGER  NOT NULL
-  ,Product_ID VARCHAR(10) NOT NULL
-  ,Amount     INTEGER NOT NULL
-  , PRIMARY KEY(Order_ID,Product_ID) 
-);
-
-
-CREATE TABLE Payment(
-   Order_ID          VARCHAR(10) NOT NULL PRIMARY KEY
-  ,Payment_Date      VARCHAR(20) NOT NULL
-  ,Amount            INTEGER NOT NULL
-  ,Method_of_Payment VARCHAR(20) NOT NULL
-  ,FOREIGN KEY (Order_ID) REFERENCES Orders(Order_ID)
-);
-
-
-CREATE TABLE Distributor(
-   Distributor_ID   VARCHAR(10) NOT NULL PRIMARY KEY
-  ,Name     VARCHAR(100) NOT NULL
-  ,Address  VARCHAR(500) NOT NULL
-  ,District VARCHAR(20) NOT NULL
-  ,State    VARCHAR(20) NOT NULL
-);
-
-
-CREATE TABLE Inventory(
-   SNo              INTEGER  NOT NULL PRIMARY KEY 
-  ,Product_ID       VARCHAR(20)  NOT NULL
-  ,Unit_or_Quantity INTEGER  NOT NULL
-  ,TBV              INTEGER  NOT NULL
-  ,PriceUnit        INTEGER NOT NULL
-  ,Distributor_ID   VARCHAR(20) NOT NULL
-  ,FOREIGN KEY(Product_ID) REFERENCES Products(Product_ID)
-  ,FOREIGN KEY(Distributor_ID) REFERENCES Distributor(Distributor_ID)
-);
