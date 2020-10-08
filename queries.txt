@@ -1,17 +1,27 @@
+SELECT * FROM payment WHERE Amount>750;
+
+SELECT * FROM inventory WHERE unit_or_quantity<5;
+
+SELECT * FROM distributor WHERE District='HYDERABAD';
+
+SELECT * FROM payment WHERE method_of_payment='sodexo';
+
+SELECT * FROM products WHERE category_id='3';
+
 // NUMBER OF ORDERS ACCORDING TO METHOD OF PAYMENT
 SELECT Count(Order_ID) as "NUMBER OF ORDERS",Method_of_Payment
 FROM Payment
 GROUP BY Method_of_Payment;
 
 // NUMBER OF DISTRIBUTORS BY STATE AND DISTRICT
-SELECT State,District,Count(Dis_ID) as "NUMBER OF DISTRIBUTORS"
+SELECT State,District,Count(Distributor_ID) as "NUMBER OF DISTRIBUTORS"
 FROM Distributor
 GROUP BY State,District;
 
 // AVERAGE PRICE UNITS BY CATEGORY ID 
-SELECT CategoryID,AVG(PriceUnit)
+SELECT Category_ID,AVG(PriceUnit)
 FROM Products
-GROUP BY CategoryID;
+GROUP BY Category_ID;
 
 // AVERAGE AMOUNT RECEIVED FOR DIFFERENT TYPES OF PAYMENT METHODS
 SELECT Method_of_Payment,Count(Order_ID) as "NUMBER OF ORDERS",AVG(Amount) as "AVERAGE AMOUNT"
@@ -26,7 +36,7 @@ FROM
 INNER JOIN
 	Orders ON Customer.Customer_ID = Orders.Customer_ID
 INNER JOIN
-    Payment ON Payment.Order_ID =Orders.Order_ID;
+    Payment ON Payment.Order_ID=Orders.Order_ID;
 
 SELECT Orders.*,Order_Details.* 
 FROM Orders
@@ -36,18 +46,18 @@ ON Orders.Order_ID=Order_Details.Order_ID;
 SELECT Product_Category.* 
 FROM Product_Category 
 INNER JOIN Products
-ON Product_Category.CategoryID=Products.CategoryID;
+ON Product_Category.Category_ID=Products.Category_ID;
 
-SELECT Products.CategoryID,COUNT(Products.Name) 
+SELECT Products.Category_ID,COUNT(Products.Name) 
 FROM Product_Category 
 INNER JOIN Products 
-ON Product_Category.CategoryID=Products.CategoryID 
-GROUP BY Products.CategoryID;
+ON Product_Category.Category_ID=Products.Category_ID 
+GROUP BY Products.Category_ID;
 
 SELECT Inventory.Product_ID,Distributor.Name,Distributor.Address
 FROM Distributor
 INNER JOIN Inventory
-ON Distributor.Dis_ID=Inventory.Dis_ID;
+ON Distributor.Distributor_ID=Inventory.Distributor_ID;
 
 SELECT Orders.Order_ID,Customer_Phone.Phone_No
 FROM Customer_Phone
