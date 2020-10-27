@@ -1,0 +1,97 @@
+#main-wrapper{
+
+	width:500px;
+	margin:0 auto;
+	background:white;
+	padding:5px;
+	border-radius: 10px;
+	border:2px solid #2c3e50;
+
+}
+
+.avatar{
+	width:125px;
+	text-align: center;
+}
+
+.myloginform{
+	width:430px;
+	margin:0 auto;
+
+}
+
+.inputvalues{
+	width:430px;
+	margin:0 auto;
+	padding:5px;
+}
+
+#login_button{
+	margin-top: 20px;
+	background-color:#27ae60;
+	padding:5px;
+	color:white;
+	width:442px;
+	text-align: center;
+	font-size: 15px;
+}
+
+#register_button{
+	margin-top: 20px;
+	background-color:#f1c40f;
+	padding:5px;
+	color:white;
+	width:442px;
+	text-align: center;
+	font-size: 15px;
+	margin-bottom: 20px;
+}
+
+#signup_button{
+	margin-top: 20px;
+	background-color:#3498db;
+	padding:5px;
+	color:white;
+	width:442px;
+	text-align: center;
+	font-size: 15px;
+
+
+}
+
+#back_button{x
+	margin-top: 20px;
+	background-color:#e74c3c;
+	padding:5px;
+	color:white;
+	width:442px;
+	text-align: center;
+	font-size: 15px;
+	margin-bottom: 20px;
+
+}
+
+
+#check_button{
+	margin-top: 20px;
+	background-color:#f1c40f;
+	padding:5px;
+	color:white;
+	width:442px;
+	text-align: center;
+	font-size: 15px;
+	margin-bottom: 20px;
+}
+
+#logout_button{
+	margin-top: 20px;
+	background-color:red;
+	padding:5px;
+	color:white;
+	width:442px;
+	text-align: center;
+	font-size: 15px;
+	margin-bottom: 20px;
+}
+
+

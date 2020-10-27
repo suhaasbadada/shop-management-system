@@ -1,0 +1,11 @@
+HOW TO RUN THE PROJECT
+
+STEP 1-Open XAMPP. 
+STEP 2- Start Apache and MySQL. 
+STEP 3- Store the 'ShopManagement' folder under htdocs ( C:/xampp/htdocs for Windows and opt/lampp/htdocs for Linux ) 
+STEP 4- Click on 'Admin' for MySQL in XAMPP application, and check your default browser, it will have opened up 'localhost/phpmyadmin'. 
+STEP 5- At the left side, click on 'New', name the database 'dbmsfinal'. 
+STEP 6- Click on import at the top center, and select this file 'shopmanagementdata.sql'. 
+STEP 7- Wait for it to load all the tables. 
+STEP 8- Go to your default browser and type in 'localhost/ShopManagement' 
+
